@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.GetValue">
+             <summary>
+            测试(显示)
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.GetEmpLogin(System.String,System.String)">
+            <summary>
+            登录
+            </summary>
+            <param name="name"></param>
+            <param name="pass"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.GetMenu(System.Int32)">
+            <summary>
+            权限显示
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.ShowHotpost">
+            <summary>
+            首页显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.ShowSeHo">
+            <summary>
+            二手房显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.loginuser(System.String,System.String)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="Name"></param>
+            <param name="Password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.show">
+            <summary>
+            用户列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.queryuser(System.String)">
+            <summary>
+            查询
+            </summary>
+            <param name="Name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.attentionshow(System.Int32)">
+            <summary>
+            用户关注列表
+            </summary>
+            <param name="Gid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.Adduser(API.Models.users)">
+            <summary>
+            注册用户
+            </summary>
+            <param name="users"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.Upid(System.Int32)">
+            <summary>
+             用户详情
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.EditUser(API.Models.users)">
+            <summary>
+            修改用户信息
+            </summary>
+            <param name="u"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.DeleteUser(System.Int32)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.NewHomeShow(System.String)">
+            <summary>
+            查询+显示新房列表
+            </summary>
+            <param name="condition">查询条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.AddNewHome(API.Models.NewHome)">
+            <summary>
+            添加新房
+            </summary>
+            <param name="homeadd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.GetHomeDetail(System.Int32)">
+            <summary>
+            新房详情
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.DelNewHomeList(System.Int32)">
+            <summary>
+            删除新闻列表
+            </summary>
+            <param name="id">根据id删除</param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.GetRentals">
+            <summary>
+            出租房显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:API.Models.FristPage.Hpt_Name">
+            热点名称
+        </member>
+        <member name="P:API.Models.FristPage.Hpt_Image">
+            <summary>
+            热点图片
+            </summary>
+        </member>
+        <member name="P:API.Models.FristPage.Hpt_Site">
+            <summary>
+            热点地址
+            </summary>
+        </member>
+        <member name="P:API.Models.FristPage.Hpt_Ara">
+            <summary>
+            热点面积
+            </summary>
+        </member>
+        <member name="P:API.Models.FristPage.Hpt_Prc">
+            <summary>
+            热点价格
+            </summary>
+        </member>
+        <member name="P:API.Models.FristPage.Hpt_Sta">
+            <summary>
+            热点标签
+            </summary>
+        </member>
+        <member name="P:API.Models.HouseContext.Houses">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Models.HouseContext.FristPages">
+            <summary>
+            首页功能
+            </summary>
+        </member>
+        <member name="P:API.Models.HouseContext.Second_Houses">
+            <summary>
+            二手房
+            </summary>
+        </member>
+        <member name="P:API.Models.HouseContext.EmployeeInfo">
+            <summary>
+            权限管理操作模块
+            </summary>
+        </member>
+        <member name="P:API.Models.HouseContext.users">
+            <summary>
+            用户模块
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomeId">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomeName">
+            <summary>
+            房屋名称
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomeCharacteristic">
+            <summary>
+            楼房特点
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.RealEstate">
+            <summary>
+            物业类型
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomeDevelopers">
+            <summary>
+            开发商
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomeAddress">
+            <summary>
+            新房地址
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomeDesign">
+            <summary>
+            新房户型
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomeIamge">
+            <summary>
+            新房图片
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomeArea">
+            <summary>
+            新房建筑面积
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomePrice">
+            <summary>
+            新房价格
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomeMarketType">
+            <summary>
+            新房出售状态
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.HomeSalesOffice">
+            <summary>
+            售楼处电话
+            </summary>
+        </member>
+    </members>
+</doc>
