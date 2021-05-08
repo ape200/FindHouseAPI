@@ -16,6 +16,7 @@ namespace API.Controllers
     {
         [Route("api/[controller]")]
         [EnableCors("cors")]//设置跨域处理的代理 3 
+        
         public class ValuesController : Controller
         {
 
@@ -43,7 +44,7 @@ namespace API.Controllers
 
 
             #region 权限管理(相关方法)
-            
+
             /// <summary>
             /// 登录
             /// </summary>
@@ -54,7 +55,7 @@ namespace API.Controllers
             [HttpGet]
             public async Task<ActionResult<EmployeeInfo>> GetEmpLogin(string name, string pass)
             {
-                string newpass = Common.Md5Helper.Get_MD5(pass,"utf-8");
+                string newpass = Common.Md5Helper.Get_MD5(pass, "utf-8");
                 return await db.EmployeeInfo.AsNoTracking().FirstOrDefaultAsync(e => e.Eno.Equals(name) && e.Password.Equals(newpass));
             }
             /// <summary>
@@ -74,6 +75,99 @@ namespace API.Controllers
                            where e.EId == id
                            select m;
                 return await linq.ToListAsync();
+
+                // var linq2= 
+              //  update - database Init
+            }
+
+            /// <summary>
+            /// 后台显示用户
+            /// </summary>
+            /// <returns></returns>
+            [HttpGet]
+            [Route("GetAllEmp")]
+            public async Task<List<EmployeeInfo>> GetAllEmp()
+            {
+                var linq = from e in db.EmployeeInfo select e;
+                return await linq.ToListAsync();
+            }
+            /// <summary>
+            /// 给某一角色添加权限(菜单)
+            /// </summary>
+            /// <param name="mids">菜单的主键(多个菜单对应一个角色)</param>
+            /// <param name="rid">添加角色的主键id,因为可能一次性添加多个权限,所以是数组</param>
+            /// <returns></returns>
+            [HttpGet]
+            [Route("AddMenuInRole")]
+            [Obsolete]
+            public int AddMenuInRole(int[] mids,int rid)
+            {
+                //try catch 用来捕获添加角色权限时可能带来的异常报错
+                try
+                {
+                    int j = mids.Length;
+                    for (int i = 0; i < j; i++)
+                    {
+                        RoleMenu m = new RoleMenu();
+                        m.MId = mids[i];
+                        m.RId = rid;
+                        db.RoleMenu.Add(m);
+                    }
+                    return 1;
+                }
+                catch (Exception )
+                {
+                    return 0;
+                    throw;
+                }
+            }
+            /// <summary>
+            /// 添加角色
+            /// </summary>
+            /// <returns></returns>
+            [HttpGet]
+            [Route("AddRole")]
+            [Obsolete]
+            public async Task<ActionResult<int>> AddRole([FromBody] RoleInfo roleinfo)
+            {
+                string sql = $"insert into RoleInfo values('{roleinfo.RId}','{roleinfo.RName}','{roleinfo.Level}','{roleinfo.Remark}')";
+                return await db.Database.ExecuteSqlCommandAsync(sql);
+            }
+            /// <summary>
+            /// 显示所有的菜单(用于给角色添加权限
+            /// </summary>
+            /// <returns></returns>
+            public async Task<List<MenuInfo>> GetAllMenu()
+            {
+                var linq = from m in db.MenuInfo select m;
+                return await linq.ToListAsync();
+            }
+            /// <summary>
+            /// 给某一用户添加新的权限
+            /// </summary>
+            /// <returns></returns>
+            [HttpGet]
+            [Route("AddMenuInEmp")]
+            public int AddMenuInEmp(int[] mids, int eid)
+            {
+                //try catch 用来捕获添加角色权限时可能带来的异常报错
+                try
+                {
+                    int j = mids.Length;
+                    for (int i = 0; i < j; i++)
+                    {
+                        EmpMenu em = new EmpMenu();
+                        em.Eid = eid;
+                        em.Mid = mids[i];
+                        db.EmpMenu.Add(em);
+                    }
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return 0;
+                    throw;
+                }
             }
 
             #endregion
@@ -90,7 +184,7 @@ namespace API.Controllers
             public async Task<ActionResult<IEnumerable<FristPage>>> ShowHotpost()
             {
                 var linq = from hpt in db.FristPages
-                            select hpt;
+                           select hpt;
                 return await linq.ToListAsync();
             }
             /// <summary>
@@ -106,11 +200,99 @@ namespace API.Controllers
                 return await linq.ToListAsync();
             }
 
+            /// <summary>
+            /// 添加二手房
+            /// </summary>
+            /// 
+            /// <returns></returns>
+            [HttpPost("AddReHouse")]
+            public async Task<ActionResult<int>> AddReHouse([FromBody] Second_House fi)
+            {
+                db.Second_Houses.Add(fi);
+                return await db.SaveChangesAsync();
+            }
+            ///<summary>
+            ///删除二手房
+            ///</summary>
+            ///<returns></returns>
+            [HttpDelete("DelReHouse")]
+            public async Task<ActionResult<int>> DelReHouse(int id)
+            {
+                db.Second_Houses.Remove(db.Second_Houses.FirstOrDefault(m => m.Se_id == id));
+                return await db.SaveChangesAsync();
+            }
+
+            ///<summary>
+            ///详情二手房
+            ///</summary>
+            ///<returns></returns>
+            [HttpGet("DetailsReHouse")]
+            public Second_House DetailsReHouse(int id)
+            {
+                return db.Second_Houses.FirstOrDefault(s => s.Se_id == id);
+            }
+
+            ///<summary>
+            ///反填二手房
+            ///</summary>
+            ///<returns></returns>
+            [HttpGet("FanReHouse")]
+            public Second_House FanReHouse(int id)
+            {
+                return db.Second_Houses.FirstOrDefault(s => s.Se_id == id);
+            }
+
+            ///<summary>
+            ///修改二手房
+            ///</summary>
+            ///<returns></returns>
+            [HttpGet("UptReHouse")]
+            public async Task<ActionResult<int>> UptReHouse([FromBody] Second_House ci)
+            {
+                db.Entry(ci).State = EntityState.Modified;
+                return await db.SaveChangesAsync();
+            }
+
             #endregion
 
 
 
             #region 张梦早用户管理模块(相关方法)
+
+            /// <summary>
+            ///用户新房
+            /// </summary>
+            /// <returns></returns>
+            [HttpGet]
+            [Route("shownew")]
+            public ActionResult shownew(int id)
+            {
+                var linq = from n in db.userNew
+                           join u in db.users on n.Userid equals u.Id
+                           join nh in db.NewHome on n.Newsid equals nh.HomeId
+                           where u.Id == id
+                           select new UHome
+                           {
+                               HomeName = nh.HomeName,
+                               RealEstate = nh.RealEstate,
+                               HomeAddress = nh.HomeAddress,
+                               HomeDesign = nh.HomeDesign,
+                               HomeIamge = nh.HomeIamge,
+                               HomeArea = nh.HomeArea,
+                               HomePrice = nh.HomePrice,
+                               HomeMarketType = nh.HomeMarketType,
+                               HomeSalesOffice = nh.HomeSalesOffice,
+
+                           };
+                if (linq != null)
+                {
+                    return Ok(new { status = 200, result = "成功", users = linq });
+                }
+                else
+                {
+                    return Ok(new { status = 1001, result = "失败", users = "" });
+                }
+            }
 
             /// <summary>
             /// 用户登录
@@ -257,7 +439,7 @@ namespace API.Controllers
 
             #endregion
 
-             
+
             #region 焦梓涵-新房模块
 
 
@@ -295,6 +477,20 @@ namespace API.Controllers
             }
             #endregion
 
+            #region 根据新房主键id查找经纬度
+            /// <summary>
+            /// 根据新房主键id查找改房子所在的经纬度
+            /// </summary>
+            /// <param name="id"></param>
+            /// <returns></returns>
+            [HttpGet]
+            [Route("GetDById/{id}")]
+            public NewHome GetDById(int id)
+            {
+                NewHome home = db.NewHome.SingleOrDefault(s => s.HomeId == id);
+                return home;
+            }
+            #endregion
 
             #region 查看新房详情
             /// <summary>

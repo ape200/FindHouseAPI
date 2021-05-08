@@ -25,6 +25,38 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.GetAllEmp">
+            <summary>
+            后台显示用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.AddMenuInRole(System.Int32[],System.Int32)">
+            <summary>
+            给某一角色添加权限(菜单)
+            </summary>
+            <param name="mids">菜单的主键(多个菜单对应一个角色)</param>
+            <param name="rid">添加角色的主键id,因为可能一次性添加多个权限,所以是数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.AddRole(API.Models.RoleInfo)">
+            <summary>
+            添加角色
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.GetAllMenu">
+            <summary>
+            显示所有的菜单(用于给角色添加权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.AddMenuInEmp(System.Int32[],System.Int32)">
+            <summary>
+            给某一用户添加新的权限
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:API.Controllers.API.Controllers.ValuesController.ShowHotpost">
             <summary>
             首页显示
@@ -36,6 +68,43 @@
             二手房显示
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.AddReHouse(API.Models.Second_House)">
+            <summary>
+            添加二手房
+            </summary>
+            
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.DelReHouse(System.Int32)">
+            <summary>
+            删除二手房
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.DetailsReHouse(System.Int32)">
+            <summary>
+            详情二手房
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.FanReHouse(System.Int32)">
+            <summary>
+            反填二手房
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.UptReHouse(API.Models.Second_House)">
+            <summary>
+            修改二手房
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.shownew(System.Int32)">
+             <summary>
+            用户新房
+             </summary>
+             <returns></returns>
         </member>
         <member name="M:API.Controllers.API.Controllers.ValuesController.loginuser(System.String,System.String)">
             <summary>
@@ -107,6 +176,13 @@
             <param name="homeadd"></param>
             <returns></returns>
         </member>
+        <member name="M:API.Controllers.API.Controllers.ValuesController.GetDById(System.Int32)">
+            <summary>
+            根据新房主键id查找改房子所在的经纬度
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:API.Controllers.API.Controllers.ValuesController.GetHomeDetail(System.Int32)">
             <summary>
             新房详情
@@ -125,6 +201,26 @@
             出租房显示
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:API.Models.EmpMenu">
+            <summary>
+            员工菜单表(主要用于给员工分配权限,而不是给角色分配)
+            </summary>
+        </member>
+        <member name="P:API.Models.EmpMenu.EMid">
+            <summary>
+            主键id
+            </summary>
+        </member>
+        <member name="P:API.Models.EmpMenu.Eid">
+            <summary>
+            员工主键
+            </summary>
+        </member>
+        <member name="P:API.Models.EmpMenu.Mid">
+            <summary>
+            菜单主键
+            </summary>
         </member>
         <member name="P:API.Models.FristPage.Hpt_Name">
             热点名称
@@ -235,6 +331,61 @@
             </summary>
         </member>
         <member name="P:API.Models.NewHome.HomeSalesOffice">
+            <summary>
+            售楼处电话
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.Longitude">
+            <summary>
+            精度
+            </summary>
+        </member>
+        <member name="P:API.Models.NewHome.Latitude">
+            <summary>
+            维度
+            </summary>
+        </member>
+        <member name="P:API.Models.UHome.HomeName">
+            <summary>
+            房屋名称
+            </summary>
+        </member>
+        <member name="P:API.Models.UHome.RealEstate">
+            <summary>
+            物业类型
+            </summary>
+        </member>
+        <member name="P:API.Models.UHome.HomeAddress">
+            <summary>
+            新房地址
+            </summary>
+        </member>
+        <member name="P:API.Models.UHome.HomeDesign">
+            <summary>
+            新房户型
+            </summary>
+        </member>
+        <member name="P:API.Models.UHome.HomeIamge">
+            <summary>
+            新房图片
+            </summary>
+        </member>
+        <member name="P:API.Models.UHome.HomeArea">
+            <summary>
+            新房建筑面积
+            </summary>
+        </member>
+        <member name="P:API.Models.UHome.HomePrice">
+            <summary>
+            新房价格
+            </summary>
+        </member>
+        <member name="P:API.Models.UHome.HomeMarketType">
+            <summary>
+            新房出售状态
+            </summary>
+        </member>
+        <member name="P:API.Models.UHome.HomeSalesOffice">
             <summary>
             售楼处电话
             </summary>

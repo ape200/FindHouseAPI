@@ -38,10 +38,13 @@ namespace API.Models
         public DbSet<MenuInfo> MenuInfo { get; set; }
         public DbSet<RoleInfo> RoleInfo { get; set; }
         public DbSet<RoleMenu> RoleMenu { get; set; }
+        public DbSet<EmpMenu> EmpMenu { get; set; }
         /// <summary>
         /// 用户模块
         /// </summary>
         public DbSet<users> users { get; set; }
+        //新房和用户
+        public DbSet<userNew> userNew { get; set; }
         //新房
         public DbSet<NewHome> NewHome { get; set; }
         //出租房
